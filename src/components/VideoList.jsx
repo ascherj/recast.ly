@@ -7,7 +7,7 @@ var VideoList = (props) => {
 
   props.videos.forEach(videoObject => {
     videos.push(
-      <VideoListEntry video={videoObject} />
+      <VideoListEntry video={videoObject} clickFunc={props.clickFunc}/>
     );
   });
 
