@@ -1,11 +1,11 @@
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoListEntry from './VideoListEntry.js';
 
-var VideoList = () => {
+var VideoList = (props) => {
 
   var videos = [];
 
-  exampleVideoData.forEach(videoObject => {
+  props.videos.forEach(videoObject => {
     videos.push(
       <VideoListEntry video={videoObject} />
     );
