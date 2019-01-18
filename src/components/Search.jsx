@@ -4,7 +4,7 @@ var Search = (props) => {
 
   var debounced = _.debounce((query) => {
     props.updateVideos(query);
-  }, 1000);
+  }, 500);
 
   return (
     <div className="search-bar form-inline">
