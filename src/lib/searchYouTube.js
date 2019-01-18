@@ -1,4 +1,5 @@
 var searchYouTube = (options, callback) => {
+  console.log('Searching YouTube...');
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search',
     type: 'GET',
