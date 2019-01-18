@@ -11,9 +11,7 @@ var searchYouTube = (options, callback) => {
       videoEmbeddable: true
     },
     dataType: 'json',
-    success: (data) => {
-      callback(data.items);
-    },
+    success: (data) => callback(data.items),
     error: () => {
       console.error('youtube: Failed to get videos');
     }

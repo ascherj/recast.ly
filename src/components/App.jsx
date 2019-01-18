@@ -2,19 +2,38 @@ import Search from './Search.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import exampleVideoData from '../data/exampleVideoData.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       videoList: exampleVideoData,
       currentVideo: exampleVideoData[0]
     };
   }
 
+  componentDidMount() {
+    this.updateVideos('roomba cats');
+  }
+
   onVideoListEntryClick(videoObject) {
     this.setState({
       currentVideo: videoObject
+    });
+  }
+
+  updateVideos(query) {
+    var options = {
+      query: query,
+      max: '5',
+      key: YOUTUBE_API_KEY
+    };
+    this.props.searchYouTube(options, (videos) => {
+      this.setState({
+        currentVideo: videos[0],
+        videoList: videos
+      });
     });
   }
 
@@ -31,7 +50,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currentVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={exampleVideoData} clickFunc={this.onVideoListEntryClick.bind(this)}/>
+            <VideoList videos={this.state.videoList} clickFunc={this.onVideoListEntryClick.bind(this)}/>
           </div>
         </div>
       </div>
