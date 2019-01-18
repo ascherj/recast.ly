@@ -12,8 +12,8 @@ var searchYouTube = (options, callback) => {
     },
     dataType: 'json',
     success: (data) => callback(data.items),
-    error: () => {
-      console.error('youtube: Failed to get videos');
+    error: (error) => {
+      error.log(error.responseText);
     }
   });
 };
